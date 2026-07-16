@@ -171,8 +171,8 @@ export default function CourtIntro() {
     if (!el) return;
     const trigger = ScrollTrigger.create({
       trigger: document.body,
-      start: "300vh top",
-      end: "500vh top",
+      start: "top top",
+      end: "200vh top",
       onUpdate: (self) => {
         const holdUntil = 0.5; // stay fully visible for first 50% of scroll
         let opacity: number;
