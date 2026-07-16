@@ -3,7 +3,7 @@ name: Build & Deploy — matchpoint
 on:
   push:
     branches:
-      - main
+      - master
 
 permissions:
   contents: read
@@ -62,7 +62,7 @@ jobs:
             sudo -u appuserwebsite bash -c '
               cd /home/projects/matchpoint &&
               GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_vps_git -o StrictHostKeyChecking=no" \
-                git pull git@github.com:High6-Corporation/matchpoint.git main
+                git pull git@github.com:High6-Corporation/matchpoint.git master
               npm ci --omit=dev
             '
             sudo -u appuserwebsite /usr/local/bin/pm2 reload matchpoint --update-env
