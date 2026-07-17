@@ -12,6 +12,7 @@ interface SocialProofSectionProps {
   testimonial?: string;
   authorName?: string;
   authorTitle?: string;
+  authorImage?: string;
 }
 
 const DEFAULTS = {
@@ -22,6 +23,7 @@ const DEFAULTS = {
     "MatchPoint changed how I approach officiating. I went from 2 games a month to being fully booked every weekend. The payment tracking alone saved me hours of chasing organizers.",
   authorName: "Rodel Santos",
   authorTitle: "PBA-Certified Referee, Metro Manila",
+  authorImage: "/images/avatar-rodel.png",
 };
 
 export default function SocialProofSection({
@@ -30,6 +32,7 @@ export default function SocialProofSection({
   testimonial = DEFAULTS.testimonial,
   authorName = DEFAULTS.authorName,
   authorTitle = DEFAULTS.authorTitle,
+  authorImage = DEFAULTS.authorImage,
 }: SocialProofSectionProps) {
   return (
     <Section className="relative overflow-hidden py-20">
@@ -65,8 +68,8 @@ export default function SocialProofSection({
           <figcaption className="flex items-center gap-2">
             <span className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-white">
               <Image
-                src="/images/avatar-rodel.png"
-                alt="Rodel Santos"
+                src={authorImage}
+                alt={authorName}
                 fill
                 className="object-cover"
               />

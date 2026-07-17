@@ -55,6 +55,7 @@ export default function OrganizersPage() {
           testimonial="We used to spend hours before every game making calls trying to fill our referee slots. MatchPoint cut that down to minutes. Now we have a trusted pool of certified officials we can rely on every weekend."
           authorName="Dante Reyes"
           authorTitle="League Coordinator, Quezon City"
+          authorImage="/images/Dante Reyes.png"
         />
         <OrganizersApplyFormSection />
         <OfficialsCTASection />

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import SmoothScroll from "@/app/components/SmoothScroll";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -20,8 +21,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body className={`${poppins.variable} bg-black font-sans text-white antialiased`}>
+        <SmoothScroll />
         {children}
       </body>
     </html>

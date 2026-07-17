@@ -19,23 +19,23 @@ export const NAVIGATION_ITEMS = [
 // ─── Pain Points Section ─────────────────────────────────────────────────────
 export const PAIN_POINTS = [
   {
-    icon: "/icons/calendar-x.svg",
-    title: "No Consistent Games",
+    icon: "/images/Limited Opportunities.svg",
+    title: "Limited Opportunities",
     body: "You are qualified, but organizers cannot find you. Weekends go empty while games are filled by officials with less experience.",
   },
   {
-    icon: "/icons/wallet-outline.svg",
-    title: "Chasing Your Pay",
-    body: "After every game, the wait begins. Following up on payments takes more time than the game itself — and some never arrive.",
-  },
-  {
-    icon: "/icons/chat-outline.svg",
-    title: "No Central Inbox",
+    icon: "/images/Scattered Communication.svg",
+    title: "Scattered Communication",
     body: "Assignments arrive through personal messages, group chats, and phone calls. No record, no confirmation, no accountability.",
   },
   {
-    icon: "/icons/people.svg",
-    title: "No Way to Stand Out",
+    icon: "/images/Manual Assignment Process.svg",
+    title: "Manual Assignment Process",
+    body: "After every game, the wait begins. Following up on payments takes more time than the game itself — and some never arrive.",
+  },
+  {
+    icon: "/images/No Professional Profile.svg",
+    title: "No Professional Profile",
     body: "Your certifications and experience exist only on paper. There is no digital profile to show leagues who you are and what you have achieved.",
   },
 ] as const;
@@ -78,22 +78,22 @@ export const FEATURES = [
 // ─── How It Works Section ────────────────────────────────────────────────────
 export const HOW_IT_WORKS_STEPS = [
   {
-    icon: "/icons/user-plus.svg",
+    icon: "/images/How MatchPoint Works for Officials 01.png",
     number: "01",
     text: "Create your verified profile with certifications, experience, and game history",
   },
   {
-    icon: "/icons/search.svg",
+    icon: "/images/How MatchPoint Works for Officials 02.png",
     number: "02",
     text: "Get discovered by leagues and tournaments actively looking for qualified referees",
   },
   {
-    icon: "/icons/inbox.svg",
+    icon: "/images/How MatchPoint Works for Officials 03.png",
     number: "03",
     text: "Accept and manage game assignments from one unified inbox",
   },
   {
-    icon: "/icons/trending-up.svg",
+    icon: "/images/How MatchPoint Works for Officials 04.png",
     number: "04",
     text: "Track your earnings, ratings, and build a reputation that gets you more games",
   },
@@ -109,23 +109,23 @@ export const TESTIMONIAL_STATS = [
 // ─── Organizers Pain Points ──────────────────────────────────────────────────
 export const ORGANIZERS_PAIN_POINTS = [
   {
-    icon: "/icons/calendar-x.svg",
-    title: "Hard to Find Reliable Referees",
+    icon: "/images/Finding Qualified Officials.svg",
+    title: "Finding Qualified Officials",
     body: "Every game is a scramble. Finding qualified officials on short notice through personal networks is unpredictable and stressful.",
   },
   {
-    icon: "/icons/wallet-outline.svg",
-    title: "Payment Chaos",
+    icon: "/images/Time-Consuming Coordination.svg",
+    title: "Time-Consuming Coordination",
     body: "Manual cash payments, informal agreements, and zero records. Tracking what you owe and who got paid is a full-time job.",
   },
   {
-    icon: "/icons/chat-outline.svg",
-    title: "No Way to Vet Credentials",
+    icon: "/images/No Trusted Officiating Network.svg",
+    title: "No Trusted Officiating Network",
     body: "You have no way to verify certifications before booking. Trusting the wrong official puts your event — and your reputation — at risk.",
   },
   {
-    icon: "/icons/people.svg",
-    title: "Last-Minute Cancellations",
+    icon: "/images/Last-Minute Changes & Replacements.svg",
+    title: "Last-Minute Changes & Replacements",
     body: "Officials cancel with no notice and no backup plan. Your event suffers, your league loses credibility, and you absorb the cost.",
   },
 ] as const;
@@ -167,22 +167,22 @@ export const ORGANIZERS_FEATURES = [
 // ─── Organizers How It Works ────────────────────────────────────────────────
 export const ORGANIZERS_HOW_IT_WORKS_STEPS = [
   {
-    icon: "/icons/calendar-x.svg",
+    icon: "/images/How MatchPoint Works for Organizers 01.png",
     number: "01",
     text: "Post your game with date, location, sport, and referee requirements",
   },
   {
-    icon: "/icons/people.svg",
+    icon: "/images/How MatchPoint Works for Organizers 02.png",
     number: "02",
     text: "Browse verified officials, review ratings and certification history",
   },
   {
-    icon: "/icons/search.svg",
+    icon: "/images/How MatchPoint Works for Organizers 03.png",
     number: "03",
     text: "Assign and confirm your referee lineup in one place",
   },
   {
-    icon: "/icons/trending-up.svg",
+    icon: "/images/How MatchPoint Works for Organizers 04.png",
     number: "04",
     text: "Track game fees, process payments, and rate officials after every game",
   },

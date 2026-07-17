@@ -17,9 +17,14 @@ export default function OrganizersFeaturesSection() {
               Everything an Organizer Needs
             </h2>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {ORGANIZERS_FEATURES.map((feature) => (
+              {ORGANIZERS_FEATURES.map((feature, i) => (
                 <div key={feature.title} className="rounded-2xl bg-card p-6">
-                  <Image src={feature.icon} alt="" width={40} height={40} />
+                  <Image
+                    src={i % 2 === 0 ? "/images/card-left.svg" : "/images/card-right.svg"}
+                    alt=""
+                    width={40}
+                    height={40}
+                  />
                   <h3 className="mt-3 text-lg font-semibold leading-8 text-white">
                     {feature.title}
                   </h3>

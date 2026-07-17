@@ -16,9 +16,14 @@ export default function FeaturesSection() {
             Everything an Official Needs
           </h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {FEATURES.map((feature) => (
+            {FEATURES.map((feature, i) => (
               <div key={feature.title} className="rounded-2xl bg-card p-6">
-                <Image src={feature.icon} alt="" width={40} height={40} />
+                <Image
+                  src={i % 2 === 0 ? "/images/card-left.svg" : "/images/card-right.svg"}
+                  alt=""
+                  width={40}
+                  height={40}
+                />
                 <h3 className="mt-3 text-lg font-semibold leading-8 text-white">
                   {feature.title}
                 </h3>
@@ -31,8 +36,8 @@ export default function FeaturesSection() {
         </div>
         <div className="relative min-h-[320px] lg:min-h-[811px] lg:w-[48%]">
           <Image
-            src="/images/tools-photo.png"
-            alt="Tools of a basketball official"
+            src="/images/everything an official needs.jpg"
+            alt="Everything an official needs on MatchPoint"
             fill
             className="object-cover"
           />

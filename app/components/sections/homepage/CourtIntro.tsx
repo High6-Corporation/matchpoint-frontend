@@ -214,7 +214,7 @@ export default function CourtIntro() {
 
       <div
         className="relative w-full h-full"
-        style={{ perspective: "2000px" }}
+        style={{ perspective: "2000px", transformStyle: "preserve-3d" }}
       >
         <CourtCard />
         <CourtCard reverse />

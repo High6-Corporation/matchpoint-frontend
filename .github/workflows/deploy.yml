@@ -29,7 +29,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build
         run: npm run build
@@ -63,6 +63,6 @@ jobs:
               cd /home/projects/matchpoint &&
               GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_vps_git -o StrictHostKeyChecking=no" \
                 git pull git@github.com:High6-Corporation/matchpoint.git master
-              npm ci --omit=dev
+              npm install --omit=dev
             '
             sudo -u appuserwebsite /usr/local/bin/pm2 reload matchpoint --update-env
