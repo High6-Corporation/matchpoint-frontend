@@ -33,7 +33,7 @@ export default function ThankYouPage() {
 
         {/* Content layer */}
         <div className="relative z-10 flex flex-1 flex-col">
-          <Header />
+          <Header homeBase />
 
           <div className="flex flex-1 flex-col items-center justify-center gap-[30px] px-6 py-20 text-center">
             {/* Inbox icon */}

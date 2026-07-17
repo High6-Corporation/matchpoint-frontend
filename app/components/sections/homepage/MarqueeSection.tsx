@@ -8,7 +8,7 @@ export default function MarqueeSection() {
   const taglineItems = Array.from({ length: MARQUEE_ITEM_COUNT * 2 });
 
   return (
-    <Section bgColor="bg-primary-500" className="overflow-hidden py-6">
+    <Section id="marquee" bgColor="bg-primary-500" className="overflow-hidden py-6">
       {/* Row 1 — Upper text: large amber MATCHPOINT */}
       <div className="animate-marquee flex w-max items-center gap-0">
         {items.map((_, i) => (

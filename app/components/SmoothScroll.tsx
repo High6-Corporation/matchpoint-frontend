@@ -25,6 +25,9 @@ export default function SmoothScroll() {
     });
     lenisRef.current = lenis;
 
+    // Expose Lenis globally for anchor links and back-to-top
+    (window as any).__lenis = lenis;
+
     // Sync Lenis → GSAP ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update);
 
@@ -40,8 +43,30 @@ export default function SmoothScroll() {
       ScrollTrigger.refresh();
     }, 500);
 
+    // Intercept hash clicks for smooth scroll via Lenis
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest("a[href^='#']") as HTMLAnchorElement | null;
+      if (!anchor) return;
+      const id = anchor.getAttribute("href");
+      if (!id || id === "#") return;
+      // #top = scroll to very top of page
+      if (id === "#top") {
+        e.preventDefault();
+        lenis.scrollTo(0, { duration: 1.5 });
+        return;
+      }
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      lenis.scrollTo(el as HTMLElement, { duration: 1.2 });
+    };
+    document.addEventListener("click", handleClick);
+
     return () => {
       clearTimeout(refreshTimeout);
+      document.removeEventListener("click", handleClick);
+      delete (window as any).__lenis;
       lenis.off("scroll", ScrollTrigger.update);
       gsap.ticker.remove(tickerFn);
       lenis.destroy();

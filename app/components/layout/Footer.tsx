@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Section from "@/app/components/layout/Section";
 import Row from "@/app/components/layout/Row";
@@ -26,6 +29,28 @@ const SOCIAL_ICONS = [
 ];
 
 export default function Footer() {
+  const [showTop, setShowTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const marquee = document.getElementById("marquee");
+      const threshold = marquee ? marquee.offsetTop : 400;
+      setShowTop(window.scrollY > threshold);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll(); // check initial position
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    const lenis = (window as any).__lenis;
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.5 });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <Section bgColor="bg-black" className="p-10 lg:p-20">
       <Row className="flex flex-col items-center gap-10">
@@ -65,6 +90,28 @@ export default function Footer() {
           </div>
         </div>
       </Row>
+
+      {/* Back to top button */}
+      {showTop && (
+        <button
+          onClick={scrollToTop}
+          aria-label="Back to top"
+          className="fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-black shadow-lg transition-all hover:bg-amber-accent hover:scale-110"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="18 15 12 9 6 15" />
+          </svg>
+        </button>
+      )}
     </Section>
   );
 }
