@@ -59,7 +59,7 @@ export default function ThankYouPage() {
 
             {/* CTA Button */}
             <a
-              href="https://www.matchpoint-official.xyz/"
+              href="/"
               className="rounded-xl bg-primary-500 px-6 py-5 text-base text-black transition-colors hover:bg-amber-accent"
             >
               Return to Homepage

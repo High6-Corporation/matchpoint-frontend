@@ -45,7 +45,7 @@ export default function FourOhFourPage() {
               occurred, go back to home page.
             </p>
             <a
-              href="https://www.matchpoint-official.xyz/"
+              href="/"
               className="mt-4 inline-block w-fit rounded-xl bg-primary-500 px-6 py-5 text-base text-white transition-colors hover:bg-amber-accent"
             >
               Return to Homepage
