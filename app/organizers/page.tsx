@@ -12,6 +12,7 @@ import WhyWeBuiltSection from "@/app/components/sections/homepage/WhyWeBuiltSect
 import SocialProofSection from "@/app/components/sections/homepage/SocialProofSection";
 import OrganizersApplyFormSection from "@/app/components/sections/organizers/ApplyFormSection";
 import OfficialsCTASection from "@/app/components/sections/organizers/OfficialsCTASection";
+import { fetchSiteSettings } from "@/app/lib/payload";
 
 export const metadata: Metadata = {
   title: "MatchPoint — Every Game Deserves the Right Official",
@@ -19,7 +20,10 @@ export const metadata: Metadata = {
     "MatchPoint connects Philippine basketball organizers with verified, reliable officials — find, book, and pay your referees in one place.",
 };
 
-export default function OrganizersPage() {
+export default async function OrganizersPage() {
+  const siteId = process.env.PAYLOAD_SITE_ID || "";
+  const settings = await fetchSiteSettings(siteId);
+
   return (
     <main className="relative bg-black">
       {/* 3D rotating court — fixed overlay, fades on scroll */}
@@ -31,10 +35,10 @@ export default function OrganizersPage() {
       {/* Main content sits below court z-index */}
       <div className="relative" style={{ zIndex: 10 }}>
         <HeroSection
-          tagline="STOP SCRAMBLING. FIND THE RIGHT REFEREE."
-          headline="Every Game Deserves the Right Official"
-          description="MatchPoint connects Philippine basketball organizers with verified, reliable officials — find, book, and pay your referees in one place."
-          ctaText="Start My MatchPoint Journey"
+          tagline={settings?.organizersHeroTagline ?? "STOP SCRAMBLING. FIND THE RIGHT REFEREE."}
+          headline={settings?.organizersHeroHeadline ?? "Every Game Deserves the Right Official"}
+          description={settings?.organizersHeroDescription ?? "MatchPoint connects Philippine basketball organizers with verified, reliable officials — find, book, and pay your referees in one place."}
+          ctaText={settings?.organizersHeroCtaText ?? "Start My MatchPoint Journey"}
           ctaHref="#apply"
           bgImage="/images/organizers_hero.jpg"
         />

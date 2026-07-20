@@ -11,8 +11,12 @@ import WhyWeBuiltSection from "@/app/components/sections/homepage/WhyWeBuiltSect
 import SocialProofSection from "@/app/components/sections/homepage/SocialProofSection";
 import ApplyFormSection from "@/app/components/sections/homepage/ApplyFormSection";
 import OrganizerCTASection from "@/app/components/sections/homepage/OrganizerCTASection";
+import { fetchSiteSettings } from "@/app/lib/payload";
 
-export default function Home() {
+export default async function Home() {
+  const siteId = process.env.PAYLOAD_SITE_ID || "";
+  const settings = await fetchSiteSettings(siteId);
+
   return (
     <main className="relative bg-black">
       {/* 3D rotating court — fixed overlay, fades on scroll */}
@@ -23,7 +27,13 @@ export default function Home() {
 
       {/* Main content sits below court z-index */}
       <div className="relative" style={{ zIndex: 10 }}>
-        <HeroSection />
+        <HeroSection
+          tagline={settings?.heroTagline ?? undefined}
+          headline={settings?.heroHeadline ?? undefined}
+          description={settings?.heroDescription ?? undefined}
+          ctaText={settings?.heroCtaText ?? undefined}
+          ctaHref={settings?.heroCtaHref ?? undefined}
+        />
       <MarqueeSection />
       <PainPointsSection />
       <MissionBannerSection bgVideo="/referee-action.mp4" />

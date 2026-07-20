@@ -97,7 +97,7 @@ export default function HeroSection({
   return (
     <div ref={sectionRef} className="relative" style={{ minHeight: "150vh" }}>
       {/* Background image with parallax */}
-      <div ref={bgRef} className="absolute inset-0" style={{ height: "100vh" }}>
+      <div ref={bgRef} className="absolute inset-0 overflow-hidden" style={{ height: "130vh" }}>
         <Image
           src={bgImage}
           alt=""
