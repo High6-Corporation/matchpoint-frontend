@@ -24,10 +24,12 @@ export default async function TestingPage() {
     };
   }
 
-  // Test 3: Raw API connectivity check
+  // Test 3: Raw API connectivity check (hit a known collection endpoint)
   let apiResult: { success: boolean; status?: number; error?: string };
   try {
-    const res = await fetch(`${apiUrl}/api`, { cache: "no-store" });
+    const res = await fetch(`${apiUrl}/api/site-settings?limit=1`, {
+      cache: "no-store",
+    });
     apiResult = { success: res.ok, status: res.status };
   } catch (err) {
     apiResult = {
