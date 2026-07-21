@@ -8,10 +8,10 @@ import { FEATURES } from "@/app/lib/constants";
 
 export default function FeaturesSection() {
   return (
-    <Section id="solutions" bgColor="bg-black" className="py-20">
+    <Section id="solutions" bgColor="bg-black" className="py-12 md:py-20">
       <FadeIn direction="up">
       <Row className="flex flex-col-reverse overflow-hidden rounded-2xl lg:flex-row">
-        <div className="bg-panel p-10 lg:w-[52%]">
+        <div className="bg-panel p-6 md:p-10 lg:w-[52%]">
           <h2 className="text-3xl font-bold leading-tight text-white md:text-4xl">
             Everything an Official Needs
           </h2>

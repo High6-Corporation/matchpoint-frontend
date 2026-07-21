@@ -11,7 +11,7 @@ export default function HowItWorksSection() {
     <Section
       id="experience"
       bgColor="bg-section"
-      className="flex flex-col items-center gap-16 py-24"
+      className="flex flex-col items-center gap-16 py-12 md:py-24"
     >
       <FadeIn direction="up">
       <Row maxWidth={960} className="flex flex-col gap-4 text-center">
@@ -25,7 +25,7 @@ export default function HowItWorksSection() {
       </FadeIn>
       <FadeIn direction="up" delay={200}>
       <Row className="flex flex-col overflow-hidden rounded-2xl bg-card lg:flex-row">
-        <div className="flex flex-1 flex-col justify-center p-10 lg:p-16">
+        <div className="flex flex-1 flex-col justify-center p-6 md:p-10 lg:p-16">
           <div className="flex flex-col gap-6">
             <h3 className="text-3xl font-bold leading-tight text-white md:text-4xl">
               Grow Your Career.
@@ -43,10 +43,10 @@ export default function HowItWorksSection() {
                     alt=""
                     width={80}
                     height={80}
-                    className="shrink-0"
+                    className="shrink-0 w-12 h-12 md:w-20 md:h-20"
                   />
                   <div className="flex flex-col gap-2">
-                    <p className="text-[28px] font-bold text-primary-500">
+                    <p className="text-xl font-bold text-primary-500 md:text-[28px]">
                       {step.number}
                     </p>
                     <p className="max-w-[480px] text-lg font-semibold leading-8 text-white">

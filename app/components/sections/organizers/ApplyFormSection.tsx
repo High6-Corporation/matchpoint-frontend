@@ -10,7 +10,51 @@ const inputClass =
   "w-full rounded-xl border border-neutral-700 bg-neutral-900 p-6 text-base leading-6 text-white placeholder:text-neutral-400/60 focus:border-primary-500 focus:outline-none appearance-none";
 
 export default function OrganizersApplyFormSection() {
-  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "idle" | "success" | "error";
+    message: string;
+  }>({ type: "idle", message: "" });
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: "idle", message: "" });
+
+    const formEl = e.currentTarget;
+    const formData = new FormData(formEl);
+
+    try {
+      const response = await fetch("/api/submit-form", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          form: "6a5f25eb91eaadd7e58076b0",
+          tenant: "6a5d701ab8a114de0330ec37",
+          submissionData: [
+            { field: "leagueororganizationname", value: formData.get("leagueName")?.toString() || "" },
+            { field: "gamespermonth", value: formData.get("gamesPerMonth")?.toString() || "" },
+            { field: "sport", value: formData.get("sport")?.toString() || "" },
+            { field: "city", value: formData.get("city")?.toString() || "" },
+            { field: "contactperson", value: formData.get("contactPerson")?.toString() || "" },
+            { field: "emailaddress", value: formData.get("email")?.toString() || "" },
+          ],
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus({ type: "success", message: "Registration received!" });
+        formEl.reset();
+        window.location.href = "/thank-you";
+      } else {
+        setSubmitStatus({ type: "error", message: "Something went wrong. Please try again." });
+      }
+    } catch {
+      setSubmitStatus({ type: "error", message: "Something went wrong. Please try again." });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <Section id="apply" className="relative overflow-hidden py-20">
@@ -28,10 +72,7 @@ export default function OrganizersApplyFormSection() {
             </p>
             <form
               className="flex flex-col gap-8 rounded-3xl border border-primary-800 bg-gradient-to-b from-black to-primary-900 p-8 md:p-12"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubmitted(true);
-              }}
+              onSubmit={handleSubmit}
             >
               <div className="flex flex-col gap-6">
                 <label className="flex flex-col gap-2 text-sm text-white">
@@ -103,10 +144,20 @@ export default function OrganizersApplyFormSection() {
               </div>
               <button
                 type="submit"
-                className="w-full rounded-full bg-primary-600 px-8 py-4 text-lg font-medium text-white transition-colors hover:bg-primary-500 hover:text-black"
+                disabled={isSubmitting}
+                className="w-full cursor-pointer rounded-full bg-primary-600 px-8 py-4 text-lg font-medium text-white transition-colors hover:bg-primary-500 hover:text-black disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {submitted ? "Registration Received!" : "Register as an Organizer"}
+                {isSubmitting
+                  ? "Submitting..."
+                  : submitStatus.type === "success"
+                    ? "Registration Received!"
+                    : "Register as an Organizer"}
               </button>
+              {submitStatus.type === "error" && (
+                <p role="alert" className="text-center text-sm text-red-400">
+                  {submitStatus.message}
+                </p>
+              )}
             </form>
           </div>
           <div className="relative hidden min-h-[880px] overflow-hidden rounded-3xl lg:block">

@@ -37,7 +37,7 @@ export default function Footer() {
   };
 
   return (
-    <Section bgColor="bg-black" className="p-10 lg:p-20">
+    <Section bgColor="bg-black" className="p-6 md:p-10 lg:p-20">
       <Row className="flex flex-col items-center gap-10">
         <div className="h-px w-full bg-primary-500/40" />
         <div className="flex w-full flex-col items-center justify-between gap-6 sm:flex-row">
@@ -83,7 +83,7 @@ export default function Footer() {
         <button
           onClick={scrollToTop}
           aria-label="Back to top"
-          className="fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-black shadow-lg transition-all hover:bg-amber-accent hover:scale-110"
+          className="fixed bottom-8 right-8 z-50 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-primary-500 text-black shadow-lg transition-all hover:bg-amber-accent hover:scale-110"
         >
           <svg
             width="20"

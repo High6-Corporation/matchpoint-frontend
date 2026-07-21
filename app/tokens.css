@@ -167,6 +167,9 @@
 
     --font-size-h3: 22px;
     --line-height-h3: 28px;
+
+    --marquee-upper-size: 120px;
+    --marquee-lower-size: 12px;
   }
 }
 
@@ -192,5 +195,10 @@
     --line-height-label: 20px;
 
     --section-py: 64px;
+
+    --marquee-upper-size: 64px;
+    --marquee-lower-size: 10px;
+    --marquee-upper-speed: 15s;
+    --marquee-lower-speed: 10s;
   }
 }

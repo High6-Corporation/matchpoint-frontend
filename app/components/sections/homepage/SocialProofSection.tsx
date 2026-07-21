@@ -35,7 +35,7 @@ export default function SocialProofSection({
   authorImage = DEFAULTS.authorImage,
 }: SocialProofSectionProps) {
   return (
-    <Section className="relative overflow-hidden py-20">
+    <Section className="relative overflow-hidden py-12 md:py-20">
       <div className="absolute inset-0">
         <Image
           src="/images/Stadium Background.png"
@@ -54,7 +54,7 @@ export default function SocialProofSection({
             {subheading}
           </p>
         </div>
-        <figure className="relative flex max-w-[695px] flex-col gap-10 rounded-3xl border border-primary-500 bg-gradient-to-b from-black to-primary-900 p-12">
+        <figure className="relative flex max-w-[695px] flex-col gap-10 rounded-3xl border border-primary-500 bg-gradient-to-b from-black to-primary-900 p-6 md:p-12">
           <Image
             src="/icons/quote.svg"
             alt=""
@@ -85,7 +85,7 @@ export default function SocialProofSection({
           {TESTIMONIAL_STATS.map((stat) => (
             <div
               key={stat.label}
-              className="flex h-[100px] w-[204px] flex-col items-center justify-center rounded-lg border border-primary-700 bg-panel"
+              className="flex h-[100px] w-full sm:w-[204px] flex-col items-center justify-center rounded-lg border border-primary-700 bg-panel"
             >
               <p className="text-4xl font-semibold leading-[46px] text-primary-500">
                 {stat.value}
