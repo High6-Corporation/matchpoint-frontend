@@ -148,8 +148,8 @@
   --marquee-upper-tracking: -0.03em;
   --marquee-lower-color: rgba(0, 0, 0, 0.55);
   --marquee-lower-size: 14px;
-  --marquee-upper-speed: 20s;
-  --marquee-lower-speed: 12s;
+  --marquee-upper-speed: 40s;
+  --marquee-lower-speed: 24s;
 
   /* ===================== OVERLAYS ===================== */
   --overlay-light: rgba(0, 0, 0, 0.3);

@@ -63,7 +63,7 @@ export default function HowItWorksSection() {
             src="/images/photo-panel-officials.png"
             alt="Basketball officials"
             fill
-            className="object-cover"
+            className="object-cover object-top md:object-[0px_20%]"
           />
         </div>
       </Row>

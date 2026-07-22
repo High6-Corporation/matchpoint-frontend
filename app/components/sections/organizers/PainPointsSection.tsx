@@ -12,12 +12,12 @@ export default function OrganizersPainPointsSection() {
       <FadeIn direction="up">
         <Row className="flex flex-col overflow-hidden rounded-2xl lg:flex-row">
           {/* Left — struggle photo */}
-          <div className="relative min-h-[320px] lg:min-h-[690px] lg:w-[48%]">
+          <div className="relative min-h-[480px] md:min-h-[560px] lg:min-h-[690px] lg:w-[48%]">
             <Image
               src="/images/organizers_struggle_image.jpg"
               alt="The struggle of organizing basketball games"
               fill
-              className="object-cover"
+              className="object-cover object-top"
             />
           </div>
 

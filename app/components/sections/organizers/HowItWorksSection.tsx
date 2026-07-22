@@ -63,7 +63,7 @@ export default function OrganizersHowItWorksSection() {
               src="/images/how_matchpoint_works_for_organizers.jpg"
               alt="Organizer managing games on MatchPoint"
               fill
-              className="object-cover"
+              className="object-cover object-top md:object-[0px_20%]"
             />
           </div>
         </Row>

@@ -36,12 +36,12 @@ export default function OrganizersFeaturesSection() {
             </div>
           </div>
           {/* Right — organizer photo */}
-          <div className="relative min-h-[320px] lg:min-h-[811px] lg:w-[48%]">
+          <div className="relative min-h-[480px] md:min-h-[560px] lg:min-h-[811px] lg:w-[48%]">
             <Image
               src="/images/every_organizers_image.jpg"
               alt="An organizer managing games on MatchPoint"
               fill
-              className="object-cover"
+              className="object-cover object-top"
             />
           </div>
         </Row>
