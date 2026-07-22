@@ -124,7 +124,7 @@ export const ORGANIZERS_PAIN_POINTS = [
     body: "You have no way to verify certifications before booking. Trusting the wrong official puts your event — and your reputation — at risk.",
   },
   {
-    icon: "/images/Last-Minute Changes & Replacements.svg",
+    icon: "/images/Last-Minute Changes and Replacements.svg",
     title: "Last-Minute Changes & Replacements",
     body: "Officials cancel with no notice and no backup plan. Your event suffers, your league loses credibility, and you absorb the cost.",
   },
