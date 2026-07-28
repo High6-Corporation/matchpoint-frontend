@@ -67,7 +67,6 @@ jobs:
             PAYLOAD_API_URL=${{ secrets.PAYLOAD_API_URL }}
             NEXT_PUBLIC_PAYLOAD_API_URL=${{ secrets.NEXT_PUBLIC_PAYLOAD_API_URL }}
             PAYLOAD_SITE_ID=${{ secrets.PAYLOAD_SITE_ID }}
-            PAYLOAD_API_KEY=${{ secrets.PAYLOAD_API_KEY }}
             EOF
               npm install --omit=dev
             '

@@ -5,23 +5,34 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     console.log("Form submission body:", body);
 
-    // Payload's form-builder plugin flags server-to-server requests as spam
-    // unless an Authorization header is present (authenticated requests skip
-    // spam protection). We include the PAYLOAD_API_KEY so the proxy is
-    // treated as an authenticated API call.
-    const headers: Record<string, string> = {
-      "Content-Type": "application/json",
-    };
+    // Forward real client IP / UA / referrer so the Payload-side CleanTalk
+    // hook scores the actual visitor, not the VPS. The plugin reads
+    // clientInfo.ip / clientInfo.userAgent / clientInfo.referrer when present.
+    const userIP =
+      request.headers.get("cf-connecting-ip") ||
+      request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
+      request.headers.get("x-real-ip") ||
+      request.headers.get("x-client-ip") ||
+      "unknown";
+    const userAgent = request.headers.get("user-agent") || "";
+    const referrer =
+      request.headers.get("referer") || request.headers.get("referrer") || "";
 
-    const apiKey = process.env.PAYLOAD_API_KEY ?? "matchpoint-forms-proxy";
-    headers["Authorization"] = `forms ${apiKey}`;
+    const payloadBody = {
+      ...body,
+      clientInfo: {
+        ip: userIP,
+        userAgent,
+        referrer,
+      },
+    };
 
     const response = await fetch(
       "https://payload-poc-xi.vercel.app/api/form-submissions",
       {
         method: "POST",
-        headers,
-        body: JSON.stringify(body),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payloadBody),
       },
     );
 
