@@ -34,8 +34,8 @@ export default function NotFound() {
               Page not found
             </h2>
             <p className="text-base leading-7 text-white/70">
-              The page you are looking for doesn&apos;t exist or an other error
-              occurred, go back to home page.
+              The page you are looking for doesn&apos;t exist or another error
+              occurred, go back to homepage.
             </p>
             <a
               href="https://www.matchpoint-official.xyz/"
