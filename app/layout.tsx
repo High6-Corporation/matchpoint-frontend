@@ -10,6 +10,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://72.60.195.99:3014"),
   title: "MatchPoint — Every Call Counts",
   description:
     "The platform built for Philippine basketball officials — get discovered, get booked, and get paid on time.",
