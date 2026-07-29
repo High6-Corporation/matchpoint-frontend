@@ -79,26 +79,28 @@ export default function Footer() {
       </Row>
 
       {/* Back to top button */}
-      {showTop && (
-        <button
-          onClick={scrollToTop}
-          aria-label="Back to top"
-          className="fixed bottom-8 right-8 z-50 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-primary-500 text-black shadow-lg transition-all hover:bg-amber-accent hover:scale-110"
+      <button
+        onClick={scrollToTop}
+        aria-label="Back to top"
+        className={`fixed bottom-8 right-8 z-50 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-primary-500 text-black shadow-lg transition-all duration-300 ease-in-out hover:bg-amber-accent hover:scale-110 ${
+          showTop
+            ? "translate-x-0 opacity-100 pointer-events-auto"
+            : "translate-x-20 opacity-0 pointer-events-none"
+        }`}
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <polyline points="18 15 12 9 6 15" />
-          </svg>
-        </button>
-      )}
+          <polyline points="18 15 12 9 6 15" />
+        </svg>
+      </button>
     </Section>
   );
 }

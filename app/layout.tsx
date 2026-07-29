@@ -13,6 +13,27 @@ export const metadata: Metadata = {
   title: "MatchPoint — Every Call Counts",
   description:
     "The platform built for Philippine basketball officials — get discovered, get booked, and get paid on time.",
+  openGraph: {
+    title: "MatchPoint — Every Call Counts",
+    description:
+      "The platform built for Philippine basketball officials — get discovered, get booked, and get paid on time.",
+    images: [
+      {
+        url: "/images/matchpoint-thumbnail.png",
+        width: 1200,
+        height: 630,
+        alt: "MatchPoint — Every Call Counts",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MatchPoint — Every Call Counts",
+    description:
+      "The platform built for Philippine basketball officials — get discovered, get booked, and get paid on time.",
+    images: ["/images/matchpoint-thumbnail.png"],
+  },
 };
 
 export default function RootLayout({
