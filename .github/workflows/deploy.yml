@@ -62,7 +62,7 @@ jobs:
             sudo -u appuserwebsite bash -c '
               cd /home/projects/matchpoint &&
               GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_vps_git -o StrictHostKeyChecking=no" \
-                git pull git@github.com:High6-Corporation/matchpoint.git master
+                git pull git@github.com:High6-Corporation/matchpoint-frontend.git master
               cat > .env <<EOF
             PAYLOAD_API_URL=${{ secrets.PAYLOAD_API_URL }}
             NEXT_PUBLIC_PAYLOAD_API_URL=${{ secrets.NEXT_PUBLIC_PAYLOAD_API_URL }}
