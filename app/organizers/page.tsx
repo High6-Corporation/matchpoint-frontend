@@ -13,12 +13,47 @@ import SocialProofSection from "@/app/components/sections/homepage/SocialProofSe
 import OrganizersApplyFormSection from "@/app/components/sections/organizers/ApplyFormSection";
 import OfficialsCTASection from "@/app/components/sections/organizers/OfficialsCTASection";
 import { fetchSiteSettings } from "@/app/lib/payload";
+import { getPageMetadata } from "@/app/lib/seo";
 
-export const metadata: Metadata = {
+/**
+ * Static fallback used when the Payload `pages` doc (slug "organizers") is
+ * unreachable or missing SEO fields.
+ */
+const ORGANIZERS_FALLBACK: Metadata = {
   title: "MatchPoint — Every Game Deserves the Right Official",
   description:
     "MatchPoint connects Philippine basketball organizers with verified, reliable officials — find, book, and pay your referees in one place.",
+  openGraph: {
+    title: "MatchPoint — Every Game Deserves the Right Official",
+    description:
+      "MatchPoint connects Philippine basketball organizers with verified, reliable officials — find, book, and pay your referees in one place.",
+    images: [
+      {
+        url: "/images/matchpoint-thumbnail.png",
+        width: 1200,
+        height: 630,
+        alt: "MatchPoint — Every Game Deserves the Right Official",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MatchPoint — Every Game Deserves the Right Official",
+    description:
+      "MatchPoint connects Philippine basketball organizers with verified, reliable officials — find, book, and pay your referees in one place.",
+    images: ["/images/matchpoint-thumbnail.png"],
+  },
 };
+
+/**
+ * Organizers SEO — sourced from the Payload `pages` document with slug
+ * "organizers" (meta.title / description / focusKeyword / image), falling back
+ * to ORGANIZERS_FALLBACK when Payload is unavailable.
+ */
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("organizers", ORGANIZERS_FALLBACK);
+}
 
 export default async function OrganizersPage() {
   const siteId = process.env.PAYLOAD_SITE_ID || "";

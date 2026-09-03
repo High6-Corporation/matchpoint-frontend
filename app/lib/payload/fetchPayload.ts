@@ -1,4 +1,4 @@
-import type { SiteSettings } from "./payload-types";
+import type { PayloadPage, SiteSettings } from "./payload-types";
 
 const BASE_URL = process.env.PAYLOAD_API_URL;
 
@@ -56,6 +56,88 @@ export async function fetchFromPayload<T>(
     return json.docs;
   } catch (error) {
     console.error(`[fetchFromPayload] ${collection}: fetch failed`, error);
+    return null;
+  }
+}
+
+/**
+ * Fetch documents from a Payload CMS collection, scoped to a tenant.
+ *
+ * Identical to `fetchFromPayload` but filters by `tenant` instead of `site`
+ * (used by collections like `pages` and `posts`).
+ */
+export async function fetchFromPayloadTenant<T>(
+  collection: string,
+  tenantId: string,
+  limit = 100,
+): Promise<T[] | null> {
+  if (!BASE_URL) {
+    console.error("[fetchFromPayloadTenant] PAYLOAD_API_URL is not set");
+    return null;
+  }
+
+  try {
+    const url = `${BASE_URL}/api/${collection}?where[tenant][equals]=${tenantId}&limit=${limit}&depth=0`;
+    const res = await fetch(url, { next: { revalidate: 3600 } });
+
+    if (!res.ok) {
+      console.error(
+        `[fetchFromPayloadTenant] ${collection}: HTTP ${res.status} ${res.statusText}`,
+      );
+      return null;
+    }
+
+    const json = (await res.json()) as PayloadListResponse<T>;
+    return json.docs;
+  } catch (error) {
+    console.error(
+      `[fetchFromPayloadTenant] ${collection}: fetch failed`,
+      error,
+    );
+    return null;
+  }
+}
+
+/**
+ * Fetch a single page document by slug (tenant-scoped).
+ *
+ * `depth` defaults to 2 so the `meta` (SEO) block's image is fully populated;
+ * pass `depth=0` for lightweight reads that only need scalar fields (e.g. the
+ * sitemap's `lastModified`). This is the working source of per-page SEO: the
+ * `pages` collection is publicly readable, unlike `site-settings` (403).
+ * Returns `null` on any failure so callers can fall back to static defaults.
+ */
+export async function fetchPageBySlug(
+  slug: string,
+  tenantId: string,
+  depth = 2,
+): Promise<PayloadPage | null> {
+  if (!BASE_URL) {
+    console.error("[fetchPageBySlug] PAYLOAD_API_URL is not set");
+    return null;
+  }
+  if (!tenantId) {
+    console.error("[fetchPageBySlug] PAYLOAD_TENANT_ID is not set");
+    return null;
+  }
+
+  try {
+    const url =
+      `${BASE_URL}/api/pages?where[tenant][equals]=${tenantId}` +
+      `&where[slug][equals]=${slug}&limit=1&depth=${depth}`;
+    const res = await fetch(url, { next: { revalidate: 3600 } });
+
+    if (!res.ok) {
+      console.error(
+        `[fetchPageBySlug] ${slug}: HTTP ${res.status} ${res.statusText}`,
+      );
+      return null;
+    }
+
+    const json = (await res.json()) as PayloadListResponse<PayloadPage>;
+    return json.docs?.[0] ?? null;
+  } catch (error) {
+    console.error(`[fetchPageBySlug] ${slug}: fetch failed`, error);
     return null;
   }
 }

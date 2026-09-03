@@ -34,6 +34,65 @@ export interface SiteSettings {
 }
 
 // ============================================================================
+// Pages & Posts (tenant-scoped content used for dynamic routes / sitemap)
+// ============================================================================
+
+/** A single responsive rendition of a Payload media image. */
+export interface PayloadMediaSize {
+  url?: string | null;
+  width?: number | null;
+  height?: number | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  filename?: string | null;
+}
+
+/** A populated Payload media document (returned when `depth` >= 1). */
+export interface PayloadMedia {
+  id: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  width?: number | null;
+  height?: number | null;
+  sizes?: {
+    og?: PayloadMediaSize | null;
+    [key: string]: PayloadMediaSize | null | undefined;
+  } | null;
+}
+
+/**
+ * The `meta` (SEO) block Payload attaches to each page document.
+ * `image` is a populated media object at `depth` >= 1, or a raw id string at
+ * `depth` = 0.
+ */
+export interface PayloadMeta {
+  title?: string | null;
+  description?: string | null;
+  focusKeyword?: string | null;
+  image?: PayloadMedia | string | null;
+}
+
+export interface PayloadPage {
+  id: string;
+  slug: string;
+  title: string;
+  meta?: PayloadMeta | null;
+  _status?: "draft" | "published";
+  updatedAt: string;
+  publishedAt?: string | null;
+}
+
+export interface PayloadPost {
+  id: string;
+  slug: string;
+  title?: string;
+  _status?: "draft" | "published";
+  updatedAt: string;
+  publishedAt?: string | null;
+}
+
+// ============================================================================
 // Testimonials / Social Proof
 // ============================================================================
 
