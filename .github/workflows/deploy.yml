@@ -29,7 +29,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build
         run: npm run build
@@ -62,12 +62,11 @@ jobs:
             sudo -u appuserwebsite bash -c '
               cd /home/projects/matchpoint &&
               GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_vps_git -o StrictHostKeyChecking=no" \
-                git pull git@github.com:High6-Corporation/matchpoint-frontend.git master
-              cat > .env <<EOF
-            PAYLOAD_API_URL=${{ secrets.PAYLOAD_API_URL }}
-            NEXT_PUBLIC_PAYLOAD_API_URL=${{ secrets.NEXT_PUBLIC_PAYLOAD_API_URL }}
-            PAYLOAD_SITE_ID=${{ secrets.PAYLOAD_SITE_ID }}
-            EOF
-              npm install --omit=dev
+                git pull git@github.com:High6-Corporation/matchpoint-frontend.git master &&
+              npm ci --omit=dev
             '
-            sudo -u appuserwebsite /usr/local/bin/pm2 reload matchpoint --update-env
+            sudo -u appuserwebsite bash -c '
+              cd /home/projects/matchpoint &&
+              /usr/local/bin/pm2 startOrReload ecosystem.config.cjs --update-env &&
+              /usr/local/bin/pm2 save
+            '
